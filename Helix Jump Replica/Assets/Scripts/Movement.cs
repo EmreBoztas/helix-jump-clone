@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed = 45;
     [SerializeField] private float left;
     [SerializeField] private float right;
     private Vector3 currentAngle;
@@ -18,11 +17,11 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetButtonDown("Left"))
         {
-            rotate(1);
+            rotate(-1);
         }
         if(Input.GetButtonDown("Right"))
         {
-            rotate(-1);
+            rotate(1);
         }
     }
     private void rotate(int move)
