@@ -6,27 +6,41 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float left;
     [SerializeField] private float right;
-    private Vector3 currentAngle;
+    private bool rotating ;
 
     void Start()
     {
-         currentAngle = transform.eulerAngles;
     }
 
     void Update()
     {
         if(Input.GetButtonDown("Left"))
         {
-            rotate(-1);
+            StartRotation(-1);
         }
         if(Input.GetButtonDown("Right"))
         {
-            rotate(1);
+            StartRotation(1);
         }
     }
-    private void rotate(int move)
+    
+     public void StartRotation(int z)
     {
-        currentAngle = new Vector3(0, currentAngle.y + (45 * move), 0);
-        transform.eulerAngles = currentAngle;
+        if( !rotating )
+            StartCoroutine( Rotate( new Vector3(0, 45 * z, 0), 1 ) ) ;
     }
+ 
+    private IEnumerator Rotate( Vector3 angles, float duration )
+    {
+        rotating = true ;
+        Quaternion startRotation = transform.rotation ;
+        Quaternion endRotation = Quaternion.Euler( angles ) * startRotation ;
+        for( float t = 0 ; t < duration ; t+= Time.deltaTime * 13 )
+        {
+            transform.rotation = Quaternion.Lerp( startRotation, endRotation, t / duration ) ;
+            yield return null;
+        }
+        transform.rotation = endRotation  ;
+        rotating = false;
+    } 
 }
