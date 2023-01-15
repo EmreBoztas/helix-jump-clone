@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
-        height = meshRenderer.bounds.size.y/2;
+        height = (meshRenderer.bounds.size.y/2) - 0.02f;
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class Ball : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce);
         GameObject newObject = Instantiate(splashPreFab, transform.position - new Vector3(0f, height,0f), transform.rotation);
         newObject.transform.SetParent(other.gameObject.transform);
-
+        
         string metarialName = other.gameObject.GetComponent<MeshRenderer>().material.name;
         
         if (metarialName == "Safe (Instance)")
