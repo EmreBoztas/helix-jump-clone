@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] Rigidbody rb;
-    [SerializeField] float jumpForce;
-    [SerializeField] GameObject splashPreFab;
-    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private GameObject splashPreFab;
+    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private GameManager gm;
 
      float height;
 
@@ -23,7 +24,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        rb.AddForce(Vector3.up * jumpForce);
+        rb.velocity = Vector3.up * jumpForce;
         GameObject newObject = Instantiate(splashPreFab, transform.position - new Vector3(0f, height,0f), transform.rotation);
         newObject.transform.SetParent(other.gameObject.transform);
         
@@ -35,11 +36,10 @@ public class Ball : MonoBehaviour
         }
         else if (metarialName == "Killer (Instance)")
         {
-
+            gm.RestartGame();
         }
         else if (metarialName == "Finish (Instance)")
         {
-
         }
     }    
     
