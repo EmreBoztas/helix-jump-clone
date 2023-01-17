@@ -5843,7 +5843,7 @@ GameObject:
   - component: {fileID: 1414684466}
   - component: {fileID: 1414684467}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5956,9 +5956,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1414684465}
-  jumpForce: 280
+  jumpForce: 4
   splashPreFab: {fileID: 4969641338107363586, guid: effa81d21e8068a4a8865d8e3414f6ab, type: 3}
   meshRenderer: {fileID: 1414684462}
+  gm: {fileID: 1112442900}
 --- !u!96 &1414684467
 TrailRenderer:
   serializedVersion: 2
