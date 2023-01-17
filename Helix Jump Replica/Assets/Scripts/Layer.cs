@@ -15,6 +15,7 @@ public class Layer : MonoBehaviour
         if(transform.position.y - 1f > ball.position.y)
         {
             gm.GameScore(25);
+            Destroy(this);
         }
     }
 }
